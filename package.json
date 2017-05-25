@@ -1,0 +1,23 @@
+{
+  "name": "dependency-analyzer",
+  "version": "1.0.0",
+  "description": "javascript module dependency analyzer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thzt/dependency-analyzer.git"
+  },
+  "author": "thzt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thzt/dependency-analyzer/issues"
+  },
+  "homepage": "https://github.com/thzt/dependency-analyzer#readme",
+  "dependencies": {
+    "precinct": "^3.6.0",
+    "recursive-readdir-sync": "^1.0.6"
+  }
+}
