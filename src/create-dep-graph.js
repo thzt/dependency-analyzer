@@ -2,7 +2,7 @@ const findFiles = require('./find-files');
 const getFileDeps = require('./get-file-deps');
 
 const excludeRegExp = /node_modules/;
-const typeRegExp = /\.js$/;
+const typeRegExp = /\.js$|\.jsx/;
 
 const createDepGraph = ({
     base,
