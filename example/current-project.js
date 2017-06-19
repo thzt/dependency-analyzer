@@ -4,7 +4,7 @@
 */
 
 const path = require('path');
-const jsAnalyzer = require('../src/index');
+const { jsAnalyzer } = require('../index');
 
 const fileTypeRegExp = /\.js$/;
 const excludeRegExp = /node_modules/;

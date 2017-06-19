@@ -1,19 +1,23 @@
 {
     "/Users/thzt/Github/dependency-analyzer/example/current-project.js": [
         "path",
-        "/Users/thzt/Github/dependency-analyzer/src/index.js"
+        "/Users/thzt/Github/dependency-analyzer/index.js"
     ],
-    "/Users/thzt/Github/dependency-analyzer/src/find-js-deps.js": [
+    "/Users/thzt/Github/dependency-analyzer/index.js": [
+        "/Users/thzt/Github/dependency-analyzer/util/create-dep-graph.js",
+        "/Users/thzt/Github/dependency-analyzer/js-analyzer/index.js"
+    ],
+    "/Users/thzt/Github/dependency-analyzer/js-analyzer/find-js-deps.js": [
         "fs",
         "path",
         "/Users/thzt/Github/dependency-analyzer/node_modules/precinct/index.js",
         "/Users/thzt/Github/dependency-analyzer/util/is-file.js",
         "/Users/thzt/Github/dependency-analyzer/util/get-dir.js"
     ],
-    "/Users/thzt/Github/dependency-analyzer/src/index.js": [
+    "/Users/thzt/Github/dependency-analyzer/js-analyzer/index.js": [
         "/Users/thzt/Github/dependency-analyzer/util/find-files.js",
         "/Users/thzt/Github/dependency-analyzer/util/create-dep-graph.js",
-        "/Users/thzt/Github/dependency-analyzer/src/find-js-deps.js"
+        "/Users/thzt/Github/dependency-analyzer/js-analyzer/find-js-deps.js"
     ],
     "/Users/thzt/Github/dependency-analyzer/util/create-dep-graph.js": [
         "/Users/thzt/Github/dependency-analyzer/util/graph.js"
