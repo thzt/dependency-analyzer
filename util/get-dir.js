@@ -1,8 +1,8 @@
 /*
-    1. 内容
-    获取某文件所在的文件夹路径
+    1. content
+    get the including directory of a give file.
 
-    TODO: node中可能会有其他基于文件系统的库来完成这件事。
+    TODO: there may be a library base of the file system to achieve this goal.
 */
 
 const fileRegExp = /(.+\/).*?/;

@@ -1,9 +1,10 @@
 /*
-    1. 内容
-    找出str中所有满足reg的匹配，并将匹配和捕获放到一个数组中。
+    1. content
+    find all matches in `str` by `reg`.
+    we will put all these match and capture to an array.
 
-    2. 关键点
-    如果没有任何匹配，并不会返回一个空数组，而是返回null。
+    2. key point
+    if there is no match, we will return `null` instead of an empty array.
 */
 
 const findMatches = (reg, str) => {

@@ -1,8 +1,6 @@
 /*
-    1. 内容
-    使用createDepGraph模块，通过配置js的模块查找策略，得到js依赖关系分析器。
-
-    其中，findJsDeps表示了js文件之间依赖关系的查找策略。
+    1. content
+    using the module `createDepGraph` by config the strategy of `findJsDeps` we will get a js analyzer.
 */
 
 const findFiles = require('../util/find-files');

@@ -1,69 +1,70 @@
 ### dependency-analyzer
 
-We can pass user-defined `resolve` method to the analyzer, it will direct the analyzer to find the dependent file.
-
 ```
-resolve = (base,file,depName) => depFileAbsolutePath
-```
+const path = require('path');
+const jsAnalyzer = require('../src/index');
 
-The `resolve` will receive `base`，`file`，`depName` as parameters, should return the absolute path of the dependent file.
+const fileTypeRegExp = /\.js$/;
+const excludeRegExp = /node_modules/;
 
-The `base` means the absolute path of the project directory, such as `./`.
+const base = path.resolve('../');
+const moduleDir = 'node_modules';
+const extensions = [
+    '.js',
+];
+const mainFileName = 'index';
 
-The `file` means the absolute path of the file which we are resolving.
-
-The `depName` means the dependent of the `file`,for example, in current project `index.js` depends on `./src/create-dep-graph`.
-
-- - -
-
-### example
-
-```
-const createDepGraph = require('./src/create-dep-graph');
-const createResolve = require('./src/create-resolve');
-
-const moduleDir = 'node_modules/';
-const base = './';
-
-const graph = createDepGraph({
+const graph = jsAnalyzer({
     base,
-    resolve: createResolve(moduleDir)
+    moduleDir,
+    mainFileName,
+    extensions,
+
+    fileTypeRegExp,
+    excludeRegExp
 });
 
-console.log(JSON.stringify(graph, null, 4));
+console.log(JSON.stringify(graph.toJSON(), null, 4));
 ```
 
-This will get the dependencies of the current project, the dependent graph is shown as an adjacency list.
+This will get the dependencies of the [current project](https://github.com/thzt/dependency-analyzer/blob/master/example/current-project.js), the dependent graph is shown as an [adjacency list](https://github.com/thzt/dependency-analyzer/blob/master/example/current-project.json).
 
 ```
 {
-    "/Users/thzt/Github/dependency-analyzer/index.js": [
-        "/Users/thzt/Github/dependency-analyzer/src/create-dep-graph.js",
-        "/Users/thzt/Github/dependency-analyzer/src/create-resolve.js"
-    ],
-    "/Users/thzt/Github/dependency-analyzer/src/create-dep-graph.js": [
-        "/Users/thzt/Github/dependency-analyzer/src/find-files.js",
-        "/Users/thzt/Github/dependency-analyzer/src/get-file-deps.js"
-    ],
-    "/Users/thzt/Github/dependency-analyzer/src/create-resolve.js": [
+    "/Users/thzt/Github/dependency-analyzer/example/current-project.js": [
         "path",
-        "/Users/thzt/Github/dependency-analyzer/src/is-file.js",
-        "/Users/thzt/Github/dependency-analyzer/src/get-dir.js"
+        "/Users/thzt/Github/dependency-analyzer/src/index.js"
     ],
-    "/Users/thzt/Github/dependency-analyzer/src/find-dep-names.js": [
-        "node_modules/precinct/index.js"
-    ],
-    "/Users/thzt/Github/dependency-analyzer/src/find-files.js": [
-        "path",
-        "node_modules/recursive-readdir-sync/index.js"
-    ],
-    "/Users/thzt/Github/dependency-analyzer/src/get-dir.js": [],
-    "/Users/thzt/Github/dependency-analyzer/src/get-file-deps.js": [
+    "/Users/thzt/Github/dependency-analyzer/src/find-js-deps.js": [
         "fs",
-        "/Users/thzt/Github/dependency-analyzer/src/find-dep-names.js"
+        "path",
+        "/Users/thzt/Github/dependency-analyzer/node_modules/precinct/index.js",
+        "/Users/thzt/Github/dependency-analyzer/util/is-file.js",
+        "/Users/thzt/Github/dependency-analyzer/util/get-dir.js"
     ],
-    "/Users/thzt/Github/dependency-analyzer/src/is-file.js": [
+    "/Users/thzt/Github/dependency-analyzer/src/index.js": [
+        "/Users/thzt/Github/dependency-analyzer/util/find-files.js",
+        "/Users/thzt/Github/dependency-analyzer/util/create-dep-graph.js",
+        "/Users/thzt/Github/dependency-analyzer/src/find-js-deps.js"
+    ],
+    "/Users/thzt/Github/dependency-analyzer/util/create-dep-graph.js": [
+        "/Users/thzt/Github/dependency-analyzer/util/graph.js"
+    ],
+    "/Users/thzt/Github/dependency-analyzer/util/find-files.js": [
+        "path",
+        "/Users/thzt/Github/dependency-analyzer/node_modules/recursive-readdir-sync/index.js"
+    ],
+    "/Users/thzt/Github/dependency-analyzer/util/find-matches.js": [],
+    "/Users/thzt/Github/dependency-analyzer/util/get-dir.js": [],
+    "/Users/thzt/Github/dependency-analyzer/util/graph.js": [
+        "/Users/thzt/Github/dependency-analyzer/util/union.js"
+    ],
+    "/Users/thzt/Github/dependency-analyzer/util/is-file.js": [
         "fs"
-    ]
+    ],
+    "/Users/thzt/Github/dependency-analyzer/util/union.js": []
 }
 ```
+
+We can pass `base`, `moduleDir`, `mainFileName`, `extensions`, `fileTypeRegExp`, `excludeRegExp` to js analyzer to get the dependencies of js files.
+Besides, we can also use `./util/create-dep-graph` to analyze an user-defined dependencies, by passing `vertexes` and a strategy `findEdges` to it.

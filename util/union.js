@@ -1,10 +1,9 @@
 /*
-    1. 内容
-    用于对多个数组按数组元素名求并集，也可用于对单个数组中的元素去重。
+    1. content
+    a utility function, used to get the union set.
 
-    2. 关键点
-    因为最后Object.keys返回的值是一个字符串数组，所以，参数arrays也应该是一个字符串数组。
-    union只能用于对字符串数组求并集。
+    2. key point
+    the set must be represented by an array of string.
 */
 
 const union = (...arrays) => {

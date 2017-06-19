@@ -1,6 +1,6 @@
 /*
-    1. 内容
-    计算当前node应用，js文件之间的依赖关系
+    1. content
+    calculate the dependencies of js files in the current project.
 */
 
 const path = require('path');

@@ -1,9 +1,9 @@
 /*
-    1. 内容
-    基于文件系统，判断某个路径是否表示一个文件。
+    1. content
+    Determine whether or not a given `path` representing a file.
 
-    某个路径可能没有任何东西，或者是一个文件夹，或者是一个文件。
-    如果路径上没有任何东西，fs.lstatSync会抛异常。
+    if there is nothing in the `path`, then an exception will be catched.
+    otherwise if it must be a directory or a file.
 */
 
 const fs = require('fs');

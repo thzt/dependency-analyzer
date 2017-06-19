@@ -1,28 +1,30 @@
 /*
-    1. 内容
-    该模块提供了js文件之间依赖关系的查找策略。
+    1. content
+    in this module, we provide a strategy to finding files by dependency names.
 
-    例如，require('./x'); 其中'./x'称为依赖名。
-    本模块的主要目的是根据依赖名尝试得到一个实际存在的文件绝对路径。
+    for example:
+    `require('./x');`, we call './x' the dependency name.
+    `findJsDeps` will find a file with absolute path by the dependency name.
 
-    （1）如果依赖名是'/'开头的，那么就用base作为根目录，
-    （2）如果依赖名是'.'开头的，就认为是一个相对路径，根据当前文件所在目录进行查找
-    （3）否则，认为这是一个node_modules依赖，从base/moduleDir中查找，其中base和moduleDir都是可配的
+    (1) if the beginning of the dependency name is '/', we will use `base` as the root directory.
+    (2) if `.`, we will treat it as a relative path, find the file from current directory.
+    (3) otherwise, it must dependent with `node_modules`, will find the file from `${base}/${moduleDir}`.
 
-    （4）根据上述三种情况得到路径，开始尝试匹配各种文件名，extensions也是传入的配置项
+    after these three steps, we then try to match all the given `extensions` of files.
 
-    2. 关键点
-    （1）从js文件获取它所有的依赖名，使用了开源precinct模块，
-    该模块可以适配多种情况，包括cmd amd commonjs
+    2. key point
+    (1) we use `precinct` module to find all dependency names of a js file.
+    this module can deal with several cases, such as CMD, AMD or COMMONJS.
 
-    （2）对于极少数文件，precinct会抛异常，例如：
+    (2) `precinct` will throw exception, in quite few file.
     ```
     define(['some'], function (require) {
         require(1 + 2);
     });
     ```
-    
-    precinct会认为`require(1 + 2);`是进行模块调用，而实际上require可以是任意函数。
+
+    in this case, `precinct` will treat `require(1 + 2);` as a module require function,
+    but in fact, the `require` can be any arbitrary functions.
 */
 
 const fs = require('fs');

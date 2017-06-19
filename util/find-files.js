@@ -1,7 +1,7 @@
 /*
-    1. 内容
-    findFiles使用同步方式查找指定文件夹下的文件，
-    可以指定文件所满足的正则表达式fileTypeRegExp，还可以指定不查找某些目录excludeRegExp。
+    1. content
+    `findFiles` will find all files in the given directory in the synchronous way.
+    we can specify `fileTypeRegExp` which filter the file extensions, and `excludeRegExp` which filter unnecessary directories.
 */
 
 const path = require('path');

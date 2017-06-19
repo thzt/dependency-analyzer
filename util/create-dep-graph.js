@@ -1,9 +1,11 @@
 /*
-    1. 内容
-    本模块提供一个函数createDepGraph用于创建依赖关系图，
-    其中，依赖关系图用Graph类进行管理，
-    createDepGraph根据用户提供的顶点vertexes，
-    以及如何从顶点找到边的策略findEdges=(vertex)=>edges 来构建Graph。
+    1. content
+    `createDepGraph` can be used to create a graph.
+    The `Graph` is a data structure used to represent the dependencies.
+
+    user should provide `vertexes` and the relation of the `vertexes` to `createDepGraph`,
+    `createDepGraph` will call `findEdges` in each vertex and get the adjancent vertexes from it.
+    the `findEdges` has the type of `(vertex)=>otherVertexes`.
 */
 
 const Graph = require('./graph');
