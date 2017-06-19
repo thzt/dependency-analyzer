@@ -1,4 +1,6 @@
-### dependency-analyzer
+## dependency-analyzer
+
+### 1. analyze js files
 
 ```
 const path = require('path');
@@ -66,7 +68,7 @@ This will get the dependencies of the [current project](https://github.com/thzt/
 }
 ```
 
-### user-defined dependencies
+### 2. analyze user-defined dependencies
 
 ```
 const { jsAnalyzer, createDepGraph } = require('../index');
@@ -74,4 +76,6 @@ const { jsAnalyzer, createDepGraph } = require('../index');
 
 We can use `jsAnalyzer` to get the dependencies of js files.
 
-Besides, we can also use `createDepGraph` to analyze any **user-defined dependencies**, by passing `vertexes` and a strategy `findEdges` to it.
+Besides, we can also use `createDepGraph` to analyze any **user-defined dependencies**, 
+
+by passing `vertexes` and a strategy `findEdges` to it.
