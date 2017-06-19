@@ -2,7 +2,7 @@
 
 ```
 const path = require('path');
-const jsAnalyzer = require('../src/index');
+const { jsAnalyzer } = require('../index');
 
 const fileTypeRegExp = /\.js$/;
 const excludeRegExp = /node_modules/;
@@ -66,6 +66,12 @@ This will get the dependencies of the [current project](https://github.com/thzt/
 }
 ```
 
-We can pass `base`, `moduleDir`, `mainFileName`, `extensions`, `fileTypeRegExp`, `excludeRegExp` to js analyzer to get the dependencies of js files.
+### user-defined dependencies
 
-Besides, we can also use `./util/create-dep-graph` to analyze an **user-defined dependencies**, by passing `vertexes` and a strategy `findEdges` to it.
+```
+const { jsAnalyzer, createDepGraph } = require('../index');
+```
+
+We can use `jsAnalyzer` to get the dependencies of js files.
+
+Besides, we can also use `createDepGraph` to analyze any **user-defined dependencies**, by passing `vertexes` and a strategy `findEdges` to it.
