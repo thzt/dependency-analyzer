@@ -67,4 +67,5 @@ This will get the dependencies of the [current project](https://github.com/thzt/
 ```
 
 We can pass `base`, `moduleDir`, `mainFileName`, `extensions`, `fileTypeRegExp`, `excludeRegExp` to js analyzer to get the dependencies of js files.
-Besides, we can also use `./util/create-dep-graph` to analyze an user-defined dependencies, by passing `vertexes` and a strategy `findEdges` to it.
+
+Besides, we can also use `./util/create-dep-graph` to analyze an **user-defined dependencies**, by passing `vertexes` and a strategy `findEdges` to it.
